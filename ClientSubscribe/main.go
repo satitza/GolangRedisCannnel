@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -46,7 +47,15 @@ func subscriber() {
 	for {
 		switch v := psc.Receive().(type) {
 		case redis.Message:
-			fmt.Printf("Received message from %s: %s\n", v.Channel, v.Data)
+
+			var result []string
+			err = json.Unmarshal(v.Data, &result)
+			if err != nil {
+				log.Fatalf("Error unmarshaling to []string: %v", err)
+			}
+
+			fmt.Printf("Received message from %s: %v\n", v.Channel, result)
+
 		case redis.Subscription:
 			fmt.Printf("Subscription event: %s to %s (count: %d)\n", v.Kind, v.Channel, v.Count)
 		case error:
