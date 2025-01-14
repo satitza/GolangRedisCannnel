@@ -20,11 +20,11 @@ func main() {
 	}
 	defer conn.Close()
 
-	channel := "example-channel"
+	channel := "channel-notifications"
 	// Publish messages periodically
-	for i := 1; i <= 5; i++ {
+	for i := 1; i <= 1; i++ {
 
-		allUserId := []string{"820d839c-c660-4a54-be40-8b8028245e3e", "15e7997f-7f59-42c1-aaa4-cc9ee827827c", "c4301568-5467-4c3c-acfc-698d1f66c911"}
+		allUserId := []string{"c371bd39-ac80-4ca0-b285-51e0eb0a96e6"}
 
 		byteArray, err := json.Marshal(allUserId)
 		if err != nil {

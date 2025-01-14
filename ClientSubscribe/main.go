@@ -37,7 +37,7 @@ func subscriber() {
 	psc := redis.PubSubConn{Conn: conn}
 
 	// Subscribe to a channel
-	channel := "example-channel"
+	channel := "channel-notifications"
 	if err := psc.Subscribe(channel); err != nil {
 		log.Fatalf("Failed to subscribe to channel %s: %v", channel, err)
 	}
